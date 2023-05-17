@@ -1,18 +1,15 @@
-# ADNS
-Alternating Excitation-Inhibitory Dendritic Computing for Classification
+# 使用方法
 
-## How to use
+1. 运行 get_train_sh.py 
 
-1. run get_train_sh.py 
+所有模型：python get_train_sh.py -n "all" 
 
-All models: python get_train_sh.py -n "all" 
+DNM参数M讨论：python get_train_sh.py -n "ADNM" -m y
 
-DNM parameter M discussion: python get_train_sh.py -n "ADNM" -m y
+2. 运行生成的sh文件开始训练
 
-2. run the generated sh file to start training
+3. get_result.py 用于看结果
 
-3. get_result.py for looking at the results
+4. get_rtable.py 生成latex表格
 
-4. get_table.py to generate latex table
-
-5. plot_(.+?) .py to generate various plots of the paper
+5. Plot_(.+?).py 生成论文各种图

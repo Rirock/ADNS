@@ -1,7 +1,6 @@
 # Generate scripts for training
 
 import os
-import argparse
 
 data_path_list = ["./Datasets/real_data/MAT", "./Datasets2", "./Datasets/synthetic/MAT"]
 
@@ -63,7 +62,7 @@ def get_all_model_train_sh(model_names):
 
 def get_DNM_M_train_sh(model_name):
     # 生成不同M的训练脚本
-    save_path = "run_"+model_name+".sh"
+    save_path = "run_all_DNM"+".sh"
     if os.path.exists(save_path):
         os.remove(save_path)
     run_times = 10
@@ -102,28 +101,8 @@ def get_demo_sh(model_names):
         f.close()
 
 
-if __name__ ==  "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-n", "--train_model", default="all", type=str, help='default="all"; "all", "demo", ["ADNM", "DNM_Linear", "DNM_multiple", "ADNS", "MLP", "ICFC", "KNN", "SVM", "TransformerEmbeddingModel", "ktree_gen"]')
-    parser.add_argument("-m", "--use_M", default="n", type=str, help=' default="n"; use_M == 1:  for M from 0 to 20 for parameter discussion ')
-    
 
-    args = parser.parse_args()
-
-    model_name = getattr(args, 'train_model')
-    use_M = getattr(args, 'use_M')
-
-    if "all" in model_name:
-        get_all_model_train_sh(model_names[3:])
-    elif "demo" in model_name:
-        get_demo_sh(model_names)
-    elif model_name in model_names[:4] and use_M=="y":
-        get_DNM_M_train_sh(model_name)
-    elif model_name in model_names:
-        get_a_model_train_sh(model_name)
-    else:
-        print("Please check if the input parameters are correct")
-
-    # get_all_model_train_sh(model_names[3:])
-    # get_a_model_train_sh(model_names[0])
-    # get_DNM_M_train_sh(model_names[1])
+get_demo_sh(model_names)
+# get_all_model_train_sh(model_names[3:])
+# get_a_model_train_sh(model_names[0])
+# get_DNM_M_train_sh(model_names[1])
