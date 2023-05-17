@@ -10,11 +10,9 @@ plt.rcParams['font.size'] = 12
 plt.rcParams['font.family'] = 'serif'
 plt.rcParams['font.serif'] = ['Times New Roman'] + plt.rcParams['font.serif']
 
-path = "./logs_all"
-methods_names = ["DNM_multiple_32_M", "DNM_Linear_M3_M", "DNM_multiple_DNM_32_M", "DNM_Linear_M"]
-methods_names2 = ["MDNM", "P1", "P2", "P3"]
-methods_names2 = ["MDNM", "No Mult", "No Attn", "No Attn&Mult"]
-methods_names2 = ["Acc", "Auc", "No Attn", "No Attn&Mult"]
+path = "./logs"
+methods_names = ["ADNS_32_M", "ADNM_M", "DNM_multiple_32_M", "DNM_Linear_M"]
+
 patterns_nums = [2,-1]
 yy = []
 
@@ -56,8 +54,8 @@ color2 = '#8E8DC8'
 # Draw bar chart
 width = 0.8
 ax.set_ylim(0.825, 0.9)
-ax.bar(x - width/2, y1, width=width, color=color1, label='Acc')
-ax.bar(x + width/2, y2, width=width, color=color2, label='Auc')
+ax.bar(x - width/2, y1, width=width, color=color1, label='ACC')
+ax.bar(x + width/2, y2, width=width, color=color2, label='AUC')
 ax.axhline(y=0.8936909940924133, color=color1, linestyle='--')
 ax.axhline(y=0.8815508388468921, color=color2, linestyle='--')
 
@@ -89,10 +87,10 @@ ax.set_xticks(x)
 
 
 # Set legend and title
-plt.xlabel('M', fontsize=14)
-plt.ylabel('Acc&Auc', fontsize=14)
+plt.xlabel('$M$', fontsize=14)
+plt.ylabel('ACC&AUC', fontsize=14)
 # ax.set_title('Parameter M Comparison') # Parameter M Comparison   Comparison of different modules
-ax.set_title('Effect of parameter M on ADNS', fontsize=16)
+ax.set_title('Effect of parameter $M$ on ADNS', fontsize=16)
 plt.legend(fontsize=12)
 
 plt.show()

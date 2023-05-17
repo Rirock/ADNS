@@ -10,9 +10,8 @@ plt.rcParams['font.size'] = 10
 plt.rcParams['font.family'] = 'serif'
 plt.rcParams['font.serif'] = ['Times New Roman'] + plt.rcParams['font.serif']
 
-path = "./logs_all"
-methods_names = ["DNM_multiple_32_M", "DNM_Linear_M3_M", "DNM_multiple_DNM_32_M", "DNM_Linear_M"]
-
+path = "./logs"
+methods_names = ["ADNS_32_M", "ADNM_M", "DNM_multiple_32_M", "DNM_Linear_M"]
 methods_names2 = ["ADNS", "No Mult", "No AEI", "No AEI&Mult"]
 methods_names2 = ["ADNS", "P1", "P2", "P3"]
 patterns_num = 2  # 2 is acc; -1 is auc
