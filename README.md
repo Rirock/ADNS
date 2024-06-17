@@ -1,15 +1,30 @@
-# 使用方法
+# ADNS
 
-1. 运行 get_train_sh.py 
+> ADNS: Alternating Excitation-Inhibition Dendritic Computing for Classification 
 
-所有模型：python get_train_sh.py -n "all" 
+> Jiayi Li, Zhenyu Lei, Zhiming Zhang, Haotian Li, Yuki Todo, [Shangce Gao](https://toyamaailab.github.io/)
 
-DNM参数M讨论：python get_train_sh.py -n "ADNM" -m y
+ADNS is a novel neural network architecture that emulates the excitation and inhibition mechanisms found in biological neurons. 
 
-2. 运行生成的sh文件开始训练
+## Overview
 
-3. get_result.py 用于看结果
+<img src="framework.jpg">
+ADNS enhancement enhances the feature extraction and nonlinear computation capabilities of single neurons, allowing the construction of multi-layer networks and enabling deep dendritic neuron models. 
 
-4. get_rtable.py 生成latex表格
+## Getting Started
 
-5. Plot_(.+?).py 生成论文各种图
+### Training
+
+```
+python train.py -m "ADNS" -d "./Datasets/real_data/MAT\Breast_Cancer_Wisconsin_Diagnosis.mat" --hidden_size 32 --DNM_M 16 -n 10
+```
+
+### Get the training batch file
+```
+python get_train_sh.py -n "all" 
+```
+
+### Generate result table
+```
+python get_result.py
+```
