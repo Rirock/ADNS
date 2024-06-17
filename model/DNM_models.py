@@ -12,27 +12,33 @@ class ADNM(nn.Module):
         w = torch.rand([out_size, M, input_size]).to(device)
         q = torch.rand([out_size, M, input_size]).to(device)
         m = torch.rand([out_size, 1, input_size]).to(device)
+        D_k = torch.rand([out_size, M]).to(device)
+        D_q = torch.rand([out_size, M]).to(device)
         torch.nn.init.constant_(q, 0.1)
         torch.nn.init.uniform_(m, a=-10.0, b=10.0)
         
         self.params = nn.ParameterDict({'w': nn.Parameter(w)})
         self.params.update({'q': nn.Parameter(q)})
         self.params.update({'m': nn.Parameter(m)})
+        self.params.update({'D_k': nn.Parameter(D_k)})
+        self.params.update({'D_q': nn.Parameter(D_q)})
 
     def forward(self, x):
         # Synapse
         out_size, M, _ = self.params['w'].shape
-        x = torch.unsqueeze(x, 1)
-        x = torch.unsqueeze(x, 2)
-        x = x.repeat(1, out_size, M, 1)
+        size_dims = x.size()
+        x = torch.unsqueeze(x, -2)
+        x = torch.unsqueeze(x, -3)
+        x = x.expand(*size_dims[:-1], out_size, M, *size_dims[-1:])
         S = torch.sigmoid(torch.mul(x, self.params['w']) - self.params['q'])
 
         A = torch.tanh(self.params['m'])       
         # Dendritic
-        D = torch.sum(torch.mul(S, A), 3) 
+        D = torch.sum(torch.mul(S, A), -1) 
+        D = self.params['D_k'] * D - self.params['D_q']
 
         # Membrane Soma
-        O = torch.sum(torch.sigmoid(D), 2)
+        O = torch.sum(torch.sigmoid(D), -1)
 
         return O
     
@@ -40,7 +46,6 @@ class ADNM(nn.Module):
         std = 1.0 / math.sqrt(self.input_size)
         for w in self.parameters():
             w.data.uniform_(-std, std)
-
 
 class ADNS(nn.Module):
     def __init__(self, input_size, hidden_size, out_size, M=5):
@@ -51,7 +56,6 @@ class ADNS(nn.Module):
         self.DNM_Linear2 = ADNM(hidden_size, out_size, M)
     
     def forward(self, x):
-        x = x.view(-1, self.input_size)
         x = self.DNM_Linear1(x)
         out = self.DNM_Linear2(x)
         return out
@@ -60,7 +64,6 @@ class ADNS(nn.Module):
         std = 1.0 / math.sqrt(self.hidden_size)
         for w in self.parameters():
             w.data.uniform_(-std, std)
-
 
 
 class DNM_Linear(nn.Module):    # MDNN
