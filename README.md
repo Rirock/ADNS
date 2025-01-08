@@ -28,3 +28,16 @@ python get_train_sh.py -n "all"
 ```
 python get_result.py
 ```
+
+## Citing ADNS
+```bib
+@article{li2024alternating,
+  title={Alternating Excitation-Inhibition Dendritic Computing for Classification},
+  author={Li, Jiayi and Lei, Zhenyu and Zhang, Zhiming and Li, Haotian and Todo, Yuki and Gao, Shangce},
+  journal={IEEE Transactions on Artificial Intelligence},
+  year={2024},
+  volume={5},
+  number={11},
+  pages={5431-5441},
+  publisher={IEEE Computer Society}
+}
