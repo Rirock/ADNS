@@ -49,13 +49,9 @@ ADNM redefines the dendritic computation by replacing multiplicative integration
 - **Synapse Layer:**  
   $$S_{ij} = \sigma(w_{ij} x_i - q_{ij})$$
 - **Dendrite Layer:**  
-  $$
-    D_{j} = \sum_{i=1}^{N} S_{ij} \cdot \tanh(m_i)
-  $$
+  $$D_{j} = \sum_{i=1}^{N} S_{ij} \cdot \tanh(m_i)$$
 - **Soma Layer:**  
-  $$
-    O = \sum_{j=1}^{M} \sigma(k_j D_j - \theta_j)
-  $$
+  $$O = \sum_{j=1}^{M} \sigma(k_j D_j - \theta_j)$$
 
 ### 3.2 AEI Mechanism
 
