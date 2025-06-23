@@ -47,9 +47,7 @@ Existing Dendritic Neuron Models (DNMs) suffer from two key limitations: they us
 ADNM redefines the dendritic computation by replacing multiplicative integration with additive integration weighted by AEI:
 
 - **Synapse Layer:**  
-  $$
-    S_{ij} = \sigma(w_{ij} x_i - q_{ij})
-  $$
+  $$S_{ij} = \sigma(w_{ij} x_i - q_{ij})$$
 - **Dendrite Layer:**  
   $$
     D_{j} = \sum_{i=1}^{N} S_{ij} \cdot \tanh(m_i)
